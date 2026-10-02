@@ -1,15 +1,15 @@
 {
   "name": "dsh-emotion-pet",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Emotion Ball pet dock for the DeepSeek Harness Web composer",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cpt-kenvie/EmotionPet.git"
+    "url": "https://github.com/leonathan369-droid/EmotionPet.git"
   },
-  "homepage": "https://github.com/cpt-kenvie/EmotionPet#readme",
+  "homepage": "https://github.com/leonathan369-droid/EmotionPet#readme",
   "bugs": {
-    "url": "https://github.com/cpt-kenvie/EmotionPet/issues"
+    "url": "https://github.com/leonathan369-droid/EmotionPet/issues"
   },
   "keywords": [
     "deepseek-harness",

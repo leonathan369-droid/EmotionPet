@@ -1,5 +1,7 @@
 # Emotion Pet for DeepSeek Harness
 
+由 [leonathan369-droid/EmotionPet](https://github.com/leonathan369-droid/EmotionPet) 持续维护的原作衍生版；保留 [sam70361/Emotion Ball](https://github.com/sam70361/emotion-ball) 的原版动画引擎。
+
 [![Emotion Pet 效果预览](https://raw.githubusercontent.com/cpt-kenvie/EmotionPet/main/assets/emotion-pet-demo.gif)](https://github.com/cpt-kenvie/EmotionPet/blob/main/assets/emotion-pet-demo.mp4)
 
 > 点击预览可打开完整效果视频。
@@ -30,16 +32,16 @@ Emotion Pet 是一个陪伴 DeepSeek Harness Web 会话的动态宠物插件，�
 
 ## 使用前提
 
-- 已安装 DeepSeek Harness，或已安装 [DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop)
+- 已安装 DeepSeek Harness，或已安装 [DSH Desktop 0.2.0-rc.2](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.0-rc.2)
 - 浏览器版可以在终端中使用 `dsh` 命令；桌面版可以从系统托盘打开 **Open DSH Terminal**
 - 使用包含 Web 界面的 Profile，例如默认的 `web`
 
 ## 在 DeepSeek Harness Web 中使用
 
-将插件安装到默认 Web Profile：
+将维护分支安装到默认 Web Profile：
 
 ```bash
-dsh plugin --profile web add dsh-emotion-pet
+dsh plugin --profile web add github:leonathan369-droid/EmotionPet#heads/codex/dsh-client-0.2
 ```
 
 启动 DeepSeek Harness Web：
@@ -50,25 +52,29 @@ dsh --profile web
 
 终端显示 `dsh web:` 地址后，在浏览器中打开该地址。宠物会出现在会话输入框正上方。
 
-## 在 DSH Desktop 中使用
+## 在 DSH Desktop 0.2.0-rc.2 中使用
 
-[DSH Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) 的 Electron 窗口加载的是本机 DeepSeek Harness Web 界面，并沿用相同的插件系统，因此 Emotion Pet 不需要桌面端专用版本。当前插件可在 Desktop 的兼容模式和高级模式中使用。
+Emotion Pet 使用 DSH 官方 Conversation UI 的 `conversation.input.dock` 插槽。DSH `0.2.0-rc.2` 仍提供此插槽，因此桌面端和 Web 都由同一份客户端适配驱动。见 [DSH 0.2.0-rc.2 发布说明](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.0-rc.2)。
 
-推荐从 DSH Desktop 系统托盘选择 **Open DSH Terminal**。该终端会显示当前激活的 Profile，以下命令默认安装到这个 Profile：
-
-```bash
-dsh plugin add dsh-emotion-pet
-```
-
-如果电脑已经另行安装了 `dsh`，也可以在普通系统终端中显式指定 Desktop Profile：
+第一次在 DSH Desktop 0.2 安装插件，先从菜单栏选择 **Manage dsh command** 安装命令，再选择 **Open DSH Terminal**。若当前 Desktop Profile 已安装作者原版，请先移除：
 
 ```bash
-dsh plugin --profile desktop add dsh-emotion-pet
+dsh plugin --profile desktop remove dsh-emotion-pet
 ```
 
-如果托盘中选择的是其他自定义 Profile，请将 `desktop` 替换成终端欢迎信息中显示的实际名称。各 Profile 的插件不会自动同步，安装到 `web` Profile 不代表已经安装到 Desktop 当前使用的 Profile。
+然后安装维护分支：
 
-安装、更新或移除插件后，需要从托盘选择 **退出**，再重新启动 DSH Desktop。仅关闭窗口通常只是把应用隐藏到托盘，不会重新加载插件。
+```bash
+dsh plugin --profile desktop add github:leonathan369-droid/EmotionPet#heads/codex/dsh-client-0.2
+```
+
+安装后从托盘完整退出并重启 DSH Desktop。Web Profile 也可以安装同一维护分支：
+
+```bash
+dsh plugin --profile web add github:leonathan369-droid/EmotionPet#heads/codex/dsh-client-0.2
+```
+
+如果你选择了其他 Profile，请把 `desktop` 替换为实际名称。各 Profile 的插件互不共享；改动后要完整重启对应 DSH Profile。
 
 Emotion Pet 的形状、颜色、“跟随表情”和“随对话”设置保存在浏览器 `localStorage` 中。Desktop 默认使用随机本地端口，重启后 origin 可能变化；如需稳定保留这些设置，建议在 DSH Desktop 设置中配置一个未占用的固定端口：
 
@@ -95,23 +101,14 @@ dsh-desktop:
 
 ## 更新
 
-更新到 npm 上的最新版本：
+维护分支有新提交后，先移除当前安装，再从分支重新安装。例如更新 Web Profile：
 
 ```bash
-dsh plugin --profile web update dsh-emotion-pet --latest
+dsh plugin --profile web remove dsh-emotion-pet
+dsh plugin --profile web add github:leonathan369-droid/EmotionPet#heads/codex/dsh-client-0.2
 ```
 
-在 DSH Desktop 内置终端中，可更新当前激活 Profile：
-
-```bash
-dsh plugin update dsh-emotion-pet --latest
-```
-
-更新后重启 Web Profile，并在浏览器中刷新页面：
-
-```bash
-dsh web
-```
+Desktop Profile 的更新方法相同，将命令中的 `web` 换为当前 Profile。更新后重启对应 Profile，并刷新 Web 页面。
 
 如果浏览器仍显示旧版本，可使用 `Ctrl + F5` 强制刷新。
 

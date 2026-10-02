@@ -37,7 +37,7 @@ const COLOR_STORAGE_KEY = 'dsh-emotion-pet.color'
 const FOLLOW_EMOTION_STORAGE_KEY = 'dsh-emotion-pet.followEmotion'
 const LOCATION_STORAGE_KEY = 'dsh-emotion-pet.location'
 // “关于”菜单固定指向插件的开源项目主页。
-const PROJECT_URL = 'https://github.com/cpt-kenvie/EmotionPet'
+const PROJECT_URL = 'https://github.com/leonathan369-droid/EmotionPet'
 // 未保存颜色时沿用 Emotion Ball 的默认体色。
 const DEFAULT_PET_COLOR = '#F3F0EA'
 // 仅这些表情需要临时覆盖用户选择的基础颜色。
